@@ -11,7 +11,7 @@ type Product = {
   name: string;
   price: number;
   category: string;
-  stock: number;
+  stock: number | null;
   image_url: string;
   created_at: string;
 };
