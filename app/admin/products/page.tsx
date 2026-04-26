@@ -487,23 +487,23 @@ export default function AdminProductsPage() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Stok</label>
-                <input
-                  type="number"
-                  value={editingProduct.stock === null ? "" : editingProduct.stock}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setEditingProduct({
-                      ...editingProduct, 
-                      stock: value === "" ? null : parseInt(value)
-                    } as Product);
-                  }}
-                  placeholder="Kosongkan jika tak terbatas"
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 text-gray-900 placeholder:text-gray-400"
-                />
-                <p className="text-xs text-gray-400 mt-1">Kosongkan untuk stok tidak terbatas</p>
-              </div>
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">Stok</label>
+  <input
+    type="number"
+    value={editingProduct.stock === null ? "" : editingProduct.stock}
+    onChange={(e) => {
+      const value = e.target.value;
+      setEditingProduct({
+        ...editingProduct, 
+        stock: value === "" ? null : parseInt(value)
+      } as Product);   // ← TAMBAHKAN INI
+    }}
+    placeholder="Kosongkan jika tak terbatas"
+    className="..."
+  />
+  <p className="text-xs text-gray-400 mt-1">Kosongkan untuk stok tidak terbatas</p>
+</div>
 
               <div className="flex gap-3 pt-4">
                 <button
