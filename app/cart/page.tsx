@@ -255,7 +255,7 @@ export default function CartPage() {
             
             {/* Cart Items - Left Column */}
             <div className="lg:col-span-2 space-y-3">
-              {cart.map((item, index) => {
+              {cart.map((item) => {
                 const currentStock = productStocks.get(item.id);
                 const isOutOfStock = currentStock === 0;
                 const isLowStock = currentStock !== undefined && currentStock !== null && currentStock <= 5 && currentStock > 0;
