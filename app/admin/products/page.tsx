@@ -45,7 +45,7 @@ export default function AdminProductsPage() {
       .select("*")
       .order("created_at", { ascending: false });
     
-    setProducts(data || []);
+setProducts((data as Product[]) || []);
     setLoading(false);
   };
 
@@ -236,21 +236,27 @@ export default function AdminProductsPage() {
                       <td className="px-6 py-4 font-bold text-gray-900 text-sm">
   {formatPrice(product.price)}
 </td>
-                      <td className="px-6 py-4">
-                        <span className={`text-sm ${
-                          product.stock !== null && product.stock > 0
-                            ? 'text-green-600'
-                            : product.stock === 0
-                            ? 'text-red-600'
-                            : 'text-gray-500'
-                        }`}>
-                          {product.stock !== null && product.stock > 0
-                            ? `${product.stock} tersisa`
-                            : product.stock === 0
-                            ? "Habis"
-                            : "Tak terbatas"}
-                        </span>
-                      </td>
+<td className="px-6 py-4">
+  {(() => {
+    const stock = product.stock ?? 0;
+
+    return (
+      <span className={`text-sm ${
+        stock > 0
+          ? 'text-green-600'
+          : stock === 0
+          ? 'text-red-600'
+          : 'text-gray-500'
+      }`}>
+        {stock > 0
+          ? `${stock} tersisa`
+          : stock === 0
+          ? "Habis"
+          : "Tak terbatas"}
+      </span>
+    );
+  })()}
+</td>
                       <td className="px-6 py-4 text-right">
                         <button onClick={() => handleEdit(product)} className="text-blue-600 hover:text-blue-700 mr-3">Edit</button>
                         <button onClick={() => deleteProduct(product.id)} className="text-red-600 hover:text-red-700">Hapus</button>
