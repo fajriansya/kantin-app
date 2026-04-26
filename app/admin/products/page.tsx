@@ -330,7 +330,7 @@ export default function AdminProductsPage() {
                           {product.stock !== null && product.stock > 0 ? `${product.stock} tersisa` : 
                            product.stock === 0 ? "Habis" : "Tak terbatas"}
                         </span>
-                      </td>
+                      <tr>
                       <td className="px-6 py-4">
                         <div className="flex justify-end gap-3">
                           <button 
@@ -497,7 +497,7 @@ export default function AdminProductsPage() {
                     setEditingProduct({
                       ...editingProduct, 
                       stock: value === "" ? null : parseInt(value)
-                    });
+                    } as Product);
                   }}
                   placeholder="Kosongkan jika tak terbatas"
                   className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 text-gray-900 placeholder:text-gray-400"
