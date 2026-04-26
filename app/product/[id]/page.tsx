@@ -13,7 +13,7 @@ type Product = {
   image_url: string;
   category?: string;
   description?: string;
-  stock?: number;
+  stock?: number | null;  // ✅ tambah | null
 };
 
 export default function ProductDetail() {
