@@ -11,7 +11,7 @@ type Product = {
   name: string;
   price: number;
   category: string;
-  stock: number | null;
+  stock?: number | null
   image_url: string;
   created_at: string;
 };
@@ -45,7 +45,12 @@ export default function AdminProductsPage() {
       .select("*")
       .order("created_at", { ascending: false });
     
-setProducts((data as Product[]) || []);
+const safeData = (data || []).map((p: any) => ({
+  ...p,
+  stock: p.stock ?? 0,
+}));
+
+setProducts(safeData);
     setLoading(false);
   };
 
@@ -244,15 +249,9 @@ setProducts((data as Product[]) || []);
       <span className={`text-sm ${
         stock > 0
           ? 'text-green-600'
-          : stock === 0
-          ? 'text-red-600'
-          : 'text-gray-500'
+          : 'text-red-600'
       }`}>
-        {stock > 0
-          ? `${stock} tersisa`
-          : stock === 0
-          ? "Habis"
-          : "Tak terbatas"}
+        {stock > 0 ? `${stock} tersisa` : "Habis"}
       </span>
     );
   })()}
@@ -324,6 +323,7 @@ setProducts((data as Product[]) || []);
                 <label className="block text-sm font-medium text-gray-700 mb-1">Stok</label>
                 <input type="number" value={editingProduct.stock === null ? "" : editingProduct.stock} onChange={(e) => {
   const value = e.target.value;
+
   setEditingProduct({
     ...editingProduct,
     stock: value === "" ? null : Number(value)

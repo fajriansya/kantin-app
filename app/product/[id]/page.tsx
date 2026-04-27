@@ -132,10 +132,13 @@ export default function ProductDetail() {
   }
 
   // Setelah product pasti ada, baru hitung stok
-  const isOutOfStock = product.stock === 0;
-  const isLowStock = product.stock !== null && product.stock !== undefined && product.stock > 0 && product.stock <= 5;
-  const hasStock = product.stock !== null && product.stock !== undefined;
-  const stockAmount = product.stock !== null && product.stock !== undefined ? product.stock : null;
+const stock = product.stock ?? 0;
+
+const isOutOfStock = stock === 0;
+const isLowStock = stock > 0 && stock <= 5;
+
+const hasStock = product.stock !== null && product.stock !== undefined;
+const stockAmount = hasStock ? product.stock : null;
 
   return (
     <div className="min-h-screen bg-gray-50">

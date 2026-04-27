@@ -256,10 +256,13 @@ export default function CartPage() {
             {/* Cart Items - Left Column */}
             <div className="lg:col-span-2 space-y-3">
               {cart.map((item) => {
-                const currentStock = productStocks.get(item.id);
-                const isOutOfStock = currentStock === 0;
-                const isLowStock = currentStock !== undefined && currentStock !== null && currentStock <= 5 && currentStock > 0;
-                const stockExceeded = currentStock !== undefined && currentStock !== null && item.qty > currentStock;
+              const currentStock = productStocks.get(item.id);
+const stock = currentStock ?? 0;
+
+const isOutOfStock = stock === 0;
+const isLowStock = stock > 0 && stock <= 5;
+
+const stockExceeded = stock > 0 && item.qty > stock;
                 
                 return (
                   <div

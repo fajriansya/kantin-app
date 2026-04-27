@@ -306,7 +306,8 @@ export default function Page() {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {filteredProducts.map((p) => {
                 const isOutOfStock = p.stock === 0;
-                const isLowStock = p.stock !== null && p.stock > 0 && p.stock <= 5;
+                const stock = p.stock ?? 0;
+const isLowStock = stock > 0 && stock <= 5;
                 
                 return (
                   <div
